@@ -1,0 +1,364 @@
+
+{%extends 'student/base.html'%}
+{%load static%}
+{%block content%}
+<!-- Content Wrapper. Contains page content -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">School Dashboard </h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">School</a></li>
+              <li class="breadcrumb-item active">Dashboard </li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-graduate"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Students</span>
+                <span class="info-box-number">
+                  {{noofstudents}}
+                  <small></small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-chalkboard-teacher"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Teachers</span>
+                <span class="info-box-number">{{noofteachers}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-user-astronaut"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Extra Workers</span>
+                <span class="info-box-number">{{noofextraworkers}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-shield"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Admin staff</span>
+                <span class="info-box-number">{{noofadminstaff}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+      
+        <!-- /.row -->
+
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-8">
+            <!-- MAP & BOX PANE -->
+           
+            <!-- /.card -->
+            <div class="row">
+              <div class="col-md-6">
+                <!-- DIRECT CHAT -->
+                <div class="card " style = "height: 300px !important;overflow:scroll;">
+                
+
+                    <div class="card-tools">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Teachers</h3>
+      
+                          <div class="card-tools">
+                            <span class="badge badge-danger">
+                              {% if noofteachers > 1%}
+                                {{noofteachers}} members 
+                              {%else%}
+                                {{noofteachers}} member 
+                              {%endif%}
+                            </span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                              <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                              <i class="fas fa-times"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                          <ul class="users-list clearfix">
+                            {%for teacher in teachers%}
+
+                            <li>
+                              <img src="{{teacher.image.url}}" style="height:60px !important;" alt="User Image">
+                              <a class="users-list-name" href="#">{{teacher.fname}} {{teacher.lname}} </a>
+                              <span class="users-list-date">{{teacher.date_added}}</span>
+                            </li>
+                           {%endfor%}
+                          </ul>
+                          <!-- /.users-list -->
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- <div class="card-footer text-center">
+                          <a href="javascript:">View All Teachers</a>
+                        </div> -->
+                        <!-- /.card-footer -->
+                      </div>
+                            </div>
+                  <!-- /.card-footer-->
+                </div>
+                <!--/.direct-chat -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-md-6">
+                <!-- USERS LIST -->
+                <div class="card" style = "height: 300px !important;overflow:scroll;">
+                  <div class="card-header">
+                    <h3 class="card-title">Admin Staff</h3>
+
+                    <div class="card-tools">
+                      <span class="badge badge-danger">
+                      {% if noofadminstaff > 1%}
+                        {{noofadminstaff}} members 
+                       {%else%}
+                        {{noofadminstaff}} member 
+                      {%endif%}
+                      </span>
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <ul class="users-list clearfix">
+                      {%for adminstaff in adminstaffs%}
+                      <li>
+                        <img  src="{{adminstaff.image.url}}" alt="User Image">
+                        <a class="users-list-name" href="#">{{adminstaff.fname}} {{adminstaff.lname}}</a>
+                        <span class="users-list-date">{{adminstaff.date_added}}</span>
+                      </li>
+                      {%endfor%}
+                     
+                    </ul>
+                    <!-- /.users-list -->
+                  </div>
+                  <!-- /.card-body -->
+                  <!-- <div class="card-footer text-center">
+                    <a href="javascript:">View All Admin Staff</a>
+                  </div> -->
+                  <!-- /.card-footer -->
+                </div>
+                <!--/.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">Students</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0" style="max-height: 800px !important; overflow:scroll;">
+                <div class="table-responsive">
+                  <table class="table m-0" >
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Date Added</th>
+                      <th>Class</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                      {%for student in students%}
+                    <tr>
+                      <td><a href="pages/examples/invoice.html">{{student.id}}</a></td>
+                      <td>{{student.fname}} {{student.lname}}</td>
+                      <td><span class="badge badge-success">{{student.date_added}}</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">{{student.returnClass}}</div>
+                      </td>
+                    </tr>
+                    {%endfor%}
+                   
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Add A Student</a>
+                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Students</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-4">
+            <!-- Info Boxes Style 2 -->
+            <div class="info-box mb-3 bg-warning">
+              <span class="info-box-icon"><i class="fas fa-blog"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">General Posts</span>
+                <span class="info-box-number">{{generalpostslength}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-success">
+              <span class="info-box-icon"><i class="fas fa-blog"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Academic Posts</span>
+                <span class="info-box-number">{{academicpostslength}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-danger">
+              <span class="info-box-icon"><i class="fas fa-user-friends"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Staff</span>
+                <span class="info-box-number">{{totalstaff}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-info">
+              <span class="info-box-icon"><i class="fab fa-usps"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total Posts</span>
+                <span class="info-box-number">{{totalposts}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+
+           
+             
+
+            <!-- PRODUCT LIST -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Extra Workers</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <ul class="products-list product-list-in-card pl-2 pr-2">
+                  {%for extraworker in extraworkers%}
+                  <li class="item">
+                    <div class="product-img">
+                      <img src="{{extraworker.image.url}}" alt="Product Image" class="img-size-50">
+                    </div>
+                    <div class="product-info">
+                      <a href="javascript:void(0)" class="product-title">{{extraworker.fname}} {{extraworker.lname}}
+                        <span class="badge badge-warning float-right">{{extraworker.date_added}}</span></a>
+                      <span class="product-description">
+                        {{extraworker.email}}
+                      </span>
+                    </div>
+                  </li>
+                  {%endfor%}
+                 
+                  <!-- /.item -->
+                </ul>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer text-center">
+                <a href="javascript:void(0)" class="uppercase">View All Extra Workers</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+{%endblock%}

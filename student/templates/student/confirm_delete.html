@@ -1,0 +1,22 @@
+{%extends 'student/base.html'%}
+{%block content%}
+
+
+<div class = "container" style="margin-right:100px !important;margin-top:200px !important;">
+    <div class = "card card-danger">
+        <div class = "card-header" >
+            Are you sure you want to delete ?   
+        </div>
+        <div class = "card-body" style="text-align: center;">
+            <form method="POST">
+                {%csrf_token%}
+                <input type = "submit" class = "btn btn-danger" value = "Yes , Delete It" >
+                <button onclick="window.history.back();" class="btn btn-success" type="button">Cancel</button>
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+
+{%endblock%}
